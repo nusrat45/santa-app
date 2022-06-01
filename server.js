@@ -1,27 +1,32 @@
-// server.js
-// where your node app starts
-
-// init project
 const express = require('express');
-const morgan = require('morgan');
 const app = express();
-const bodyParser = require('body-parser');
+const PORT = process.env.PORT || 3001;
+const homeRoute = require('./routes/index');
+const sendRequestRoute = require('./routes/sendRequest');
+const alertRoute = require('./routes/alert');
+const { sendMail } = require('./controllers/sendMail');
+const cron = require('node-cron');
 
-app.use(bodyParser());
-app.use(morgan());
-
-// we've started you off with Express,
-// but feel free to use whatever libs or frameworks you'd like through `package.json`.
-
-// http://expressjs.com/en/starter/static-files.html
+app.use(express.json())
+app.use(express.urlencoded())
 app.use(express.static('public'));
 
-// http://expressjs.com/en/starter/basic-routing.html
-app.get('/', (request, response) => {
-  response.sendFile(__dirname + '/views/index.html');
-});
+// All Routes
+app.use('/', homeRoute)
+app.use('/', sendRequestRoute)
+app.use('/', alertRoute)
+
+// EJS view engine for html 
+app.engine('html', require('ejs').renderFile);
+app.set('view engine', 'html');
 
 // listen for requests :)
-const listener = app.listen(process.env.PORT || 3000, function () {
-  console.log('Your app is listening on port ' + listener.address().port);
+const listener = app.listen(PORT, function () {
+  console.log('Server is running on port ' + listener.address().port);
 });
+
+//Send email in 15 seconds
+cron.schedule("*/15 * * * * *", function() {
+  sendMail();
+});
+

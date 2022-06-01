@@ -7,14 +7,23 @@
   "description": "A simple Node app built on Express, instantly up and running.",
   "main": "server.js",
   "scripts": {
-    "start": "node -r dotenv/config server.js"
+    "start": "node -r dotenv/config server.js",
+    "dev": "nodemon -r dotenv/config server.js"
   },
   "dependencies": {
     "body-parser": "^1.19.0",
+    "cookie-parser": "^1.4.6",
     "dotenv": "^8.0.0",
+    "ejs": "^3.1.8",
     "express": "^4.16.4",
+    "fs": "^0.0.1-security",
     "morgan": "^1.9.1",
-    "request": "^2.88.0"
+    "node-cron": "^3.0.0",
+    "node-fetch": "^2.6.7",
+    "nodemailer": "^6.7.5",
+    "nodemon": "^2.0.16",
+    "request": "^2.88.0",
+    "store": "^2.0.12"
   },
   "engines": {
     "node": "8.x"

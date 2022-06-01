@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="stylesheet" href="/css/style.css">
+        <title>Document</title>
+    </head>
+    <body>
+        <div class="center">
+            <div class="alert text-center">
+                <% if(alert === 'error-not-registered'){%>
+                    <h2>Sorry :(</h2>
+                    <p>Please, register your name to send wish to Santa</p>
+                <% } else if(alert === 'error-over-age'){%>
+                    <h2>Sorry :(</h2>
+                    <p>You're a big boy/girl now! </br> For sending wish you need to be 10years old or less.</p>
+                <% } else { %>
+                    <h2>Congratulations :D</h2>
+                    <p>Now Santa knows what you want!</p>
+                <% } %> 
+                <button><a href="/">Go Back to Home</a></button>       
+            </div>
+        </div> 
+    </body>
+</html>
